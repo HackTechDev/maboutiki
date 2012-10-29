@@ -239,7 +239,7 @@ function creerRepertoireSite($sitenom){
 }
 
 /*
-   Déplacement du fichier archive .zip
+   Déplacement du fichier archive .tbz2
  */
 function copierArchiveZip($version, $sitenom){
     $de = "./squelettes/site" . $version . ".tbz2";
@@ -250,11 +250,7 @@ function copierArchiveZip($version, $sitenom){
 
 /*
   Insertion du fichier des requêtes sql
-  Remarque création du fichier des requétes sql : inclure les noms de colonnes dans chaque énoncé INSERT
-
-
  */
-
 
 function insererRequetesSQL($version, $sitenom, $utilisateur, $motpasse){
 	$conn = new mysqli('localhost', $utilisateur, $motpasse);
@@ -280,6 +276,7 @@ function insererRequetesSQL($version, $sitenom, $utilisateur, $motpasse){
 	}
 
 	// AFAIRE : A recoder en php
+    // En prod : changer l'appel de la commande mysql
 	echo "Insertion des donn&eacute;e<br/>";	
 	system("../../bin/mysql -h localhost -u ".$utilisateur." -p".$motpasse." " . $sitenom . " < " . "../sites/" . $sitenom . "/bdd/site" . $version . ".sql");
 
