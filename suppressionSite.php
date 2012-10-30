@@ -10,7 +10,6 @@ $prefixbd = 'joomla';
 $courriel = 'version01@mapetiteboutique.pro';
 $nomcourriel = 'Ma Petite Boutique Version01';
 
-installerSite($version, $sitedesc, $utilisateur, $motpasse, $sitenom, $prefixbd, $courriel, $nomcourriel);
+suppressionSite($version, $sitedesc, $utilisateur, $motpasse, $sitenom, $prefixbd, $courriel, $nomcourriel);
 
-echo "<br/><a href=\"http://localhost/sites/". $sitenom . "/\">" . $sitenom . "</a>";
 ?>
