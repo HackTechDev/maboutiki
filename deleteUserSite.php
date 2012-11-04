@@ -1,8 +1,9 @@
 <?php
 include("softwareManagement.php");
 
-$user = 'util01';
+$user = 'util21';
+$password = 'mot2passe';
 
-deleteUserSite($user);
+deleteUserSite($user, $password);
 
 ?>

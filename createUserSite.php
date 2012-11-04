@@ -3,9 +3,9 @@ include("softwareManagement.php");
 
 $version = 1; // Joomla application
 $sitename = 'Mon test';
-$user = 'util20';
+$user = 'util21';
 $password = 'mot2passe';
-$db = 'util20';
+$db = 'util21';
 $dbprefix = 'joomla';
 $mailfrom = 'version01@mapetiteboutique.pro';
 $fromname = 'Ma Petite Boutique Version01';

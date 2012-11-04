@@ -359,18 +359,18 @@ function removeSoftwareByUser($user, $software) {
    Remove user site
  */
 
-function removeUserSite($user) {
-    if (is_dir ($user)) {
-        $dh = opendir ($user); 
+function removeUserSite($site) {	
+    if (is_dir ($site)) {
+        $dh = opendir ($site); 
     }else {     
         exit;
     }
 
     while (($file = readdir ($dh)) !== false ) { 
         if ($file !== '.' && $file !== '..') { 
-            $path =$dir.'/'.$file;
+            $path = $site.'/'.$file;
             if (is_dir ($path)) {           
-                supprimerRepertoire($path); 
+                removeUserSite($path); 
                 rmdir($path);
             }else {   
                 unlink($path);
@@ -378,7 +378,7 @@ function removeUserSite($user) {
         }
     }
     closedir ($dh); 
-    rmdir("../sites/" . $user);
+
 }
 
 /*
@@ -440,7 +440,6 @@ function createUser($user, $password){
 	setPermissionUserDatabase($user, $password);
 }
 
-
 /*
    Install software
  */
@@ -453,13 +452,56 @@ function installSoftware($version, $sitename, $user, $password, $db, $dbprefix, 
 }
 
 /*
+	Remove User in database	
+*/
+
+function removeUserInDatabase($user, $password){
+    $conn = new mysqli("localhost", "root", "mot2passe");
+
+    if (mysqli_connect_errno()) {
+        exit('Connection failed: '. mysqli_connect_error());
+    }
+
+    $sql = "DELETE FROM `mysql`.`user` WHERE `user`.`User` =  '" . $user . "';";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Database removed " . $user . "<br/>";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
+/*
+  Remove UserDatabase in database
+*/
+
+function removeUserDatabaseInDatabase($user, $password){
+    $conn = new mysqli("localhost", "root", "mot2passe");
+
+    if (mysqli_connect_errno()) {
+        exit('Connection failed: '. mysqli_connect_error());
+    }
+
+    $sql = "DELETE FROM `mysql`.`db` WHERE `db`.`Db` = '" . $user . "' AND `db`.`User` =   '" . $user . "';";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Database removed " . $user . "<br/>";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
+/*
    Delete user site
  */
 
-function deleteUserSite($user){
+function deleteUserSite($user, $password){
     // Permission du site : 777
-    removeUserSite($user);
-    removeUserDatabase($user);
+    removeUserSite("../sites/" . $user);
+    rmdir("../sites/" . $user);
+    removeUserDatabase($user, $password);
+	removeUserInDatabase($user, $password);
+	removeUserDatabaseInDatabase($user, $password);
 }
 
 /*
