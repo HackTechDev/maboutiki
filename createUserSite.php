@@ -1,11 +1,11 @@
 <?php
-include("softwareManagement.php");
+include("./libraries/softwareManagement.php");
 
 $version = 1; // Joomla application
 $sitename = 'Mon test';
-$user = 'util21';
+$user = 'util22';
 $password = 'mot2passe';
-$db = 'util21';
+$db = 'util22';
 $dbprefix = 'joomla';
 $mailfrom = 'version01@mapetiteboutique.pro';
 $fromname = 'Ma Petite Boutique Version01';
