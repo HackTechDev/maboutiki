@@ -85,7 +85,7 @@ function removeUserDatabase($user){
     $sql = "DROP DATABASE " . $user . ";";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Database removed " . $user . "<br/>";
+        echo "User Database removed " . $user . "<br/>";
     } else {
         echo "Error: " . $conn->error;
     }
@@ -133,7 +133,7 @@ function removeUserInDatabase($user, $password){
     $sql = "DELETE FROM `mysql`.`user` WHERE `user`.`User` =  '" . $user . "';";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Database removed " . $user . "<br/>";
+        echo "User Database in Database removed " . $user . "<br/>";
     } else {
         echo "Error: " . $conn->error;
     }
