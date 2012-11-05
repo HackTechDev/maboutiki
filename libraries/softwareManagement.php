@@ -333,7 +333,7 @@ function createUser($user, $password){
     createUserSite($user);
     createSqlUser($user, $password);
     createUserDatabase($user);
-	setPermissionUserDatabase($user, $password);
+    setPermissionUserDatabase($user, $password);
 }
 
 /*
@@ -356,8 +356,8 @@ function deleteUserSite($user, $password){
     removeUserSite("../sites/" . $user);
     rmdir("../sites/" . $user);
     removeUserDatabase($user, $password);
-	removeUserInDatabase($user, $password);
-	removeUserDatabaseInDatabase($user, $password);
+    removeUserInDatabase($user, $password);
+    removeUserDatabaseInDatabase($user, $password);
 }
 
 /*

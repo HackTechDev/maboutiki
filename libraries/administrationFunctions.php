@@ -5,19 +5,19 @@ $adminPassword = "mot2passe";
 
 /*
    Create Sql user
-  Only mysql admin can do that.
+   Only mysql admin can do that.
  */
 
 function createSqlUser($user, $password){
-	global $adminLogin, $adminPassword;
-    
+    global $adminLogin, $adminPassword;
+
     $conn = new mysqli("localhost", $adminLogin, $adminPassword);
 
     if (mysqli_connect_errno()) {
         exit('Connection failed'. mysqli_connect_error());
     }
 
-	$sql = "CREATE USER '$user'@'localhost' IDENTIFIED BY '$password';";
+    $sql = "CREATE USER '$user'@'localhost' IDENTIFIED BY '$password';";
 
     if ($conn->query($sql) === TRUE) {
         echo "User in Database selected: " . $user . "<br/>";
@@ -32,14 +32,14 @@ function createSqlUser($user, $password){
  */
 
 function createUserDatabase($user){
-	global $adminLogin, $adminPassword;
+    global $adminLogin, $adminPassword;
     $conn = new mysqli("localhost", $adminLogin, $adminPassword);
 
     if (mysqli_connect_errno()) {
         exit('Connection failed'. mysqli_connect_error());
     }
 
-	$sql = "CREATE DATABASE `$user`;";
+    $sql = "CREATE DATABASE `$user`;";
 
     if ($conn->query($sql) === TRUE) {
         echo "User Database created: " . $user . "<br/>";
@@ -54,13 +54,13 @@ function createUserDatabase($user){
  */
 
 function setPermissionUserDatabase($user, $password){
-	global $adminLogin, $adminPassword;
+    global $adminLogin, $adminPassword;
     $conn = new mysqli("localhost", $adminLogin, $adminPassword);
 
     if (mysqli_connect_errno()) {
         exit('Connection failed'. mysqli_connect_error());
     }
-	$sql = "GRANT ALL PRIVILEGES ON `$user`.* TO '$user'@'localhost';";
+    $sql = "GRANT ALL PRIVILEGES ON `$user`.* TO '$user'@'localhost';";
 
     if ($conn->query($sql) === TRUE) {
         echo "User Permission Database created: " . $user . "<br/>";
@@ -75,7 +75,7 @@ function setPermissionUserDatabase($user, $password){
  */
 
 function removeUserDatabase($user){
-	global $adminLogin, $adminPassword;
+    global $adminLogin, $adminPassword;
     $conn = new mysqli("localhost", $adminLogin, $adminPassword);
 
     if (mysqli_connect_errno()) {
@@ -119,11 +119,11 @@ function removeSoftwareDatabaseByUser($user, $password, $software){
 }
 
 /*
-	Remove User in database	
-*/
+   Remove User in database	
+ */
 
 function removeUserInDatabase($user, $password){
-	global $adminLogin, $adminPassword;
+    global $adminLogin, $adminPassword;
     $conn = new mysqli("localhost", $adminLogin, $adminPassword);
 
     if (mysqli_connect_errno()) {
@@ -140,11 +140,11 @@ function removeUserInDatabase($user, $password){
 }
 
 /*
-  Remove UserDatabase in database
-*/
+   Remove UserDatabase in database
+ */
 
 function removeUserDatabaseInDatabase($user, $password){
-	global $adminLogin, $adminPassword;
+    global $adminLogin, $adminPassword;
     $conn = new mysqli("localhost", $adminLogin, $adminPassword);
 
     if (mysqli_connect_errno()) {
